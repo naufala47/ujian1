@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    masukkan dimensi matrix
+    <input type="text" id="nomor">
+    <button type="button" id="clickMe">Buat</button>
+    <script>
+        let button = document.getElementById("clickMe");
+        button.addEventListener("click", myFunction);
+        function myFunction() {
+            jumlahTable();
+
+            var body = document.getElementsByTagName("body")[0];
+            var toAdd = document.createDocumentFragment();
+            let nomor = document.getElementById("nomor").value;
+
+            for (var i = 0; i < 2; i++) {
+                var table = document.createElement('table');
+                var tBody = document.createElement("tbody");
+                var spasi = document.createElement("br");
+                var text = document.createTextNode("Masukkan nilai matrix "+i);
+                var tombol = document.createElement("button");
+
+                for (var o = 0; o < nomor; o++) {
+                    var row = document.createElement("tr");
+                    for (var j = 0; j < nomor; j++) {
+                        var cell = document.createElement("td");
+                        var input = document.createElement("input");
+                        input.id = "input" + j;
+                        input.setAttribute("type", "number");
+                        table.appendChild(text);
+                        cell.appendChild(input);
+                        row.appendChild(cell);
+                    }
+                    tBody.appendChild(row);
+                }
+
+                table.appendChild(tBody);
+                table.id = 'table' + i;
+                table.setAttribute("border", "0");
+                toAdd.appendChild(table);
+                table.appendChild(spasi);
+            }
+
+            body.appendChild(toAdd);
+            table.appendChild(tombol);
+        }
+
+        function jumlahTable() {
+            for (let m = 0; m < 2; m++) {
+                let table = document.getElementById("table" + m);
+                if (table != null) {
+                    table.parentNode.removeChild(table);
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
